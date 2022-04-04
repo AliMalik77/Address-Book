@@ -7,9 +7,9 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 
-// const { Header, Content, Footer, Sider } = Layout;
 const { Header, Content, Footer } = Layout;
-import "./styles.less";
+
+import "../style/styles.less";
 const Navbar = () => {
   return (
     <div>

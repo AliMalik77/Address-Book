@@ -1,36 +1,44 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import Cards from "./Card";
+import Cards from "./Components/Card";
 import { Card, Avatar, Row, Col, Typography } from "antd";
-import { Button, Radio } from "antd";
 const { Title } = Typography;
 
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  // const [check, setCheck] = useState(false);
+
   const myRef = useRef();
 
-  // const options = {
-  //   threshold: 1.0,
-  // };
+  const options = {
+    root: null,
+    rootMargin: "10px",
+  };
   useEffect(() => {
     if (page <= 5) {
       const observer = new IntersectionObserver((entries) => {
         const entry = entries[0];
         console.log("entry", entry);
         if (entry && entry.isIntersecting) {
-          console.log(
-            "entry  is ...........................",
-            entry.isIntersecting
-          );
-          setIsVisible(entry.isIntersecting);
-          console.log("visibility is ......", isVisible);
+          console.log("true >>>>>>>>>>>>>>>.");
 
-          // }
+          const getData = async () => {
+            const response = await axios.get(
+              `https://randomuser.me/api/?page=${page}&results=10`
+            );
+            setUsers([...users, ...response.data.results]);
+            setPage(page + 1);
+            console.log(
+              "new data ...........................>>",
+              response.data.results
+            );
+            console.log("Second and so on.........");
+          };
+
+          getData();
         }
-      });
+      }, options);
       if (myRef.current) {
         observer.observe(myRef.current);
       }
@@ -40,38 +48,20 @@ const Users = () => {
         }
       };
     }
-  }, [myRef]);
-
-  useEffect(() => {
-    console.log("page is ....", page);
-    console.log("myref", myRef.current);
-    axios({
-      method: "GET",
-      url: `https://randomuser.me/api/?page=${page}&results=10`,
-    }).then((response) => {
-      console.log("user data before ...", users);
-      console.log("new data .....", response.data.results);
-      const data = response.data.results;
-
-      setUsers([...users, ...response.data.results]);
-
-      // console.log("asdjaksda", isVisible);
-      if (isVisible) {
-        setPage(page + 1);
-        setIsVisible(false);
-        console.log("visible again set to ......", isVisible);
-      }
-    });
-  }, [page, isVisible, myRef]);
+  }, [myRef.current, options]);
 
   // useEffect(() => {
-  //   axios
-  //     .get("https://randomuser.me/api/?results=10")
-  //     .then((response) => {
-  //       setUsers(response.data.results);
-  //       console.log(response);
-  //     })
-  //     .catch((err) => console.log(err));
+  //   console.log("page is ....", page);
+  //   console.log("myref", myRef.current);
+  //   axios({
+  //     method: "GET",
+  //     url: `https://randomuser.me/api/?page=${page}&results=10`,
+  //   }).then((response) => {
+  //     setUsers([...users, ...response.data.results]);
+  //     console.log("First render >>>>.");
+  //     setPage(page + 1);
+  //     setIsVisible(false);
+  //   });
   // }, []);
 
   return (
@@ -93,20 +83,18 @@ const Users = () => {
           </Col>
         ))}
       </Row>
-      <div
-        className="btn-btn"
-        ref={myRef}
-        style={{ backgroundColor: "red", height: "20vh" }}
-      >
-        {/* <Button
-          type="primary"
-          size={10}
-          onClick={() => {
-            setPage(page + 1);
-          }}
-        >
-          Load More
-        </Button> */}
+
+      <div className="center" ref={myRef}>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
       </div>
     </>
   );

@@ -1,13 +1,10 @@
 import axios from "axios";
 import React from "react";
 import ReactDOM from "react-dom";
-import Cards from "./Card";
-import Navbar from "./navbar";
+import Navbar from "./Components/Navbar";
 import Users from "./users";
-import Serch from "./Search";
-import { Card, Avatar, Row, Col } from "antd";
-// import './styles.less'
-// import styles from
+import Serch from "./Components/Search";
+
 const HelloWorld = () => {
   return (
     <div>
