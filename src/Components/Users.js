@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import Cards from "./Components/Card";
+import Cards from "./Card";
 import { Card, Avatar, Row, Col, Typography } from "antd";
 const { Title } = Typography;
 
@@ -49,20 +49,6 @@ const Users = () => {
       };
     }
   }, [myRef.current, options]);
-
-  // useEffect(() => {
-  //   console.log("page is ....", page);
-  //   console.log("myref", myRef.current);
-  //   axios({
-  //     method: "GET",
-  //     url: `https://randomuser.me/api/?page=${page}&results=10`,
-  //   }).then((response) => {
-  //     setUsers([...users, ...response.data.results]);
-  //     console.log("First render >>>>.");
-  //     setPage(page + 1);
-  //     setIsVisible(false);
-  //   });
-  // }, []);
 
   return (
     <>

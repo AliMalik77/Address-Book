@@ -4,8 +4,8 @@ const { Meta } = Card;
 const { Title } = Typography;
 
 const Cards = (props) => {
-  console.log("props data is ....", props);
-  console.log("email data is ....", props.data.email);
+  // console.log("props data is ....", props);
+  // console.log("email data is ....", props.data.email);
 
   return (
     <div style={{ marginTop: "20px" }}>
