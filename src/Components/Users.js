@@ -1,61 +1,66 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useGetPageDataQuery } from "../Services/getData";
 import axios from "axios";
 import Cards from "./Card";
+import { useSelector, useDispatch } from "react-redux";
 import { Card, Avatar, Row, Col, Typography } from "antd";
+import { getUser } from "../Redux/reducers/userReducer";
 const { Title } = Typography;
 
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [loading, isloading] = useState(false);
 
-  const myRef = useRef();
+  const { user } = useSelector((state) => ({ ...state.app }));
+  const dispatch = useDispatch();
 
   const options = {
     root: null,
     rootMargin: "10px",
   };
+
+  const [node, setNode] = useState(null);
+
+  const observer = useRef(
+    new window.IntersectionObserver(([entry]) => {
+      if (entry && entry.isIntersecting) incrementPage();
+    }, options)
+  );
+
+  const incrementPage = () => {
+    setPage((x) => x + 1);
+    isloading(false);
+  };
+
   useEffect(() => {
-    if (page <= 5) {
-      const observer = new IntersectionObserver((entries) => {
-        const entry = entries[0];
-        console.log("entry", entry);
-        if (entry && entry.isIntersecting) {
-          console.log("true >>>>>>>>>>>>>>>.");
+    const { current: currentObserver } = observer;
+    currentObserver.disconnect();
 
-          const getData = async () => {
-            const response = await axios.get(
-              `https://randomuser.me/api/?page=${page}&results=10`
-            );
-            setUsers([...users, ...response.data.results]);
-            setPage(page + 1);
-            console.log(
-              "new data ...........................>>",
-              response.data.results
-            );
-            console.log("Second and so on.........");
-          };
+    if (node) currentObserver.observe(node);
 
-          getData();
-        }
-      }, options);
-      if (myRef.current) {
-        observer.observe(myRef.current);
-      }
-      return () => {
-        if (myRef.current) {
-          observer.unobserve(myRef.current);
-        }
-      };
+    return () => currentObserver.disconnect();
+  }, [node]);
+
+  useEffect(() => {
+    console.log("page loading is .........", page);
+    isloading(true);
+    console.log("is loading check .....", loading);
+    if (loading) {
+      console.log("in check .............");
+      dispatch(getUser(page));
+      // isloading(false);
     }
-  }, [myRef.current, options]);
+
+    console.log("loading page ....", loading);
+  }, [page]);
 
   return (
     <>
       <Title level={1} className="heading">
         List of users{" "}
       </Title>
-      {console.log("user data ...", users)}
+      {console.log("user data ...", user)}
 
       <Row
         style={{
@@ -63,14 +68,14 @@ const Users = () => {
           marginBottom: "300px",
         }}
       >
-        {users.map((item, index) => (
+        {user.map((item, index) => (
           <Col lg={{ span: 6 }} xs={{ span: 24 }}>
-            <Cards data={users[index]} key={index} />
+            <Cards data={user[index]} key={index} />
           </Col>
         ))}
       </Row>
 
-      <div className="center" ref={myRef}>
+      <div className="center" ref={setNode}>
         <div className="wave"></div>
         <div className="wave"></div>
         <div className="wave"></div>
