@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useGetPageDataQuery } from "../Services/getData";
-import axios from "axios";
 import Cards from "./Card";
 import { useSelector, useDispatch } from "react-redux";
-import { Card, Avatar, Row, Col, Typography } from "antd";
-import { getUser } from "../Redux/reducers/userReducer";
+import { Row, Col, Typography } from "antd";
+import { getUser, filterUser } from "../Redux/reducers/userReducer";
 const { Title } = Typography;
 
 const Users = () => {
@@ -12,8 +10,14 @@ const Users = () => {
   const [page, setPage] = useState(0);
   const [loading, isloading] = useState(false);
 
-  const { user } = useSelector((state) => ({ ...state.app }));
+  const { user, error, filter } = useSelector((state) => state.app);
   const dispatch = useDispatch();
+
+  console.log("data fetched from redux store .....>>>>>", user, error);
+  console.log("filter fetched from redux store ..........>>>>", filter);
+  // const search = user.filter(
+  //   (item) => item.fistName.includes(search) && item.lastName.includes(search)
+  // );
 
   const options = {
     root: null,
@@ -43,16 +47,16 @@ const Users = () => {
   }, [node]);
 
   useEffect(() => {
-    console.log("page loading is .........", page);
-    isloading(true);
-    console.log("is loading check .....", loading);
-    if (loading) {
-      console.log("in check .............");
-      dispatch(getUser(page));
-      // isloading(false);
+    if (page <= 5) {
+      isloading(true);
+      if (loading) {
+        if (filter === null) {
+          dispatch(getUser({ page, filter }));
+        } else {
+          dispatch(filterUser({ page, filter }));
+        }
+      }
     }
-
-    console.log("loading page ....", loading);
   }, [page]);
 
   return (
@@ -60,7 +64,7 @@ const Users = () => {
       <Title level={1} className="heading">
         List of users{" "}
       </Title>
-      {console.log("user data ...", user)}
+      {/* {console.log("user data ...", user)} */}
 
       <Row
         style={{
