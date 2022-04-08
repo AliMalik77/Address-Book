@@ -15,7 +15,7 @@ const Header = () => {
   // console.log("isLoading .....", isLoading);
   // console.log("isSuccess .....", isSuccess);
   const { user } = useSelector((state) => ({ ...state.app }));
-  console.log("data fetched ..........>>>>>>>>>>>", user);
+  // console.log("data fetched ..........>>>>>>>>>>>", user);
   const [page, setPage] = useState(0);
   const dispatch = useDispatch();
 
@@ -33,8 +33,6 @@ const Header = () => {
     <div style={{ textAlign: "center", fontWeight: "bold" }}>
       <h1>The Count is </h1>
       <button onClick={getUserData}>Increment</button>
-      {/* <button onClick={() => dispatch(increment())}>Increment</button>
-      <button onClick={() => dispatch(decrement())}>Decrement</button> */}
     </div>
   );
 };

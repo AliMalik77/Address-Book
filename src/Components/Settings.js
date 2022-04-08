@@ -1,10 +1,11 @@
 import React from "react";
 import RadioButton from "./RadioButton";
+import Navbar from "./Navbar";
 
 const Settings = () => {
   return (
     <div>
-      {/* <h1>Ths is testing page</h1> */}
+      <Navbar />
       <RadioButton />
     </div>
   );

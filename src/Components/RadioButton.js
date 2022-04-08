@@ -7,7 +7,7 @@ const { Title } = Typography;
 
 const RadioButton = () => {
   const { user, error, filter } = useSelector((state) => state.app);
-  console.log("radio button filter ..........>>>>>", filter);
+
   const dispatch = useDispatch();
 
   const page = 1;
@@ -16,7 +16,6 @@ const RadioButton = () => {
     dispatch(setFilter("CH"));
     dispatch(emptyUser());
   };
-  //   console.log("user data in radio button", user);
   return (
     <div className="radio-btn">
       <Title level={1}>Search Users By Nationality</Title>

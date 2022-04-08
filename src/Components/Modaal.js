@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Modal, Button } from "antd";
-
+import { Typography } from "antd";
+const { Title } = Typography;
 const Modaal = ({ data }) => {
   const { location, phone, cell } = data;
   const { city, street, state, postcode } = location;
   const { number, name } = street;
-  console.log("data fetched from props ................>>>>>>>>>>.", data);
+  // console.log("data fetched from props ................>>>>>>>>>>.", data);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
     setIsModalVisible(true);
@@ -22,20 +23,20 @@ const Modaal = ({ data }) => {
   return (
     <div>
       <Button type="primary" onClick={showModal}>
-        Open Modal
+        View Details
       </Button>
       <Modal
-        title="Basic Modal"
+        title="User Details"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>{name}</p>
-        <p>{city}</p>
-        <p>{state}</p>
-        <p>{postcode}</p>
-        <p>{phone}</p>
-        <p>{cell}</p>
+        <Title level={5}>{name}</Title>
+        <Title level={5}>{city}</Title>
+        <Title level={5}>{state}</Title>
+        <Title level={5}>{postcode}</Title>
+        <Title level={5}>{phone}</Title>
+        <Title level={5}>{cell}</Title>
       </Modal>
     </div>
   );

@@ -7,12 +7,12 @@ const Cards = ({ data }) => {
   const { picture, name, login, email } = data;
   const { first, last } = name;
   const { username, password } = login;
-  console.log("props card ....>>>>>>>>>", picture);
+
   return (
     <div style={{ marginTop: "20px" }}>
       <Card
         style={{ width: 300 }}
-        cover={<img alt="example" src={picture.large} />}
+        cover={<img alt="example" src={picture?.large} />}
       >
         <Title level={5}>{first}</Title>
         <Title level={5}>{last}</Title>
