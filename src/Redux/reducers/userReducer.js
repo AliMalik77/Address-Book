@@ -7,9 +7,9 @@ export const cacheData = createAsyncThunk("cache/getData", async (data) => {
   const page = data.page;
   const nationality = data.filter;
   const limit = data.limit;
-  console.log("page parameter in cache  >>>>>>>>>>>", page);
-  console.log("nationality >>>>>>>>>>>", nationality);
-  console.log("limit >>>>>>>>>>>", limit);
+  // console.log("page parameter in cache  >>>>>>>>>>>", page);
+  // console.log("nationality >>>>>>>>>>>", nationality);
+  // console.log("limit >>>>>>>>>>>", limit);
 
   const response = await axios.get(
     `https://randomuser.me/api/?page=${page}&results=${limit}`
@@ -21,10 +21,10 @@ export const getUser = createAsyncThunk("get/userData", async (data) => {
   const page = data.page;
   const nationality = data.filter;
   const limit = data.limit;
-  console.log("page parameter >>>>>>>>>>>", page);
+  // console.log("page parameter >>>>>>>>>>>", page);
   //if page = 1 =====> load more users
-  console.log("nationality >>>>>>>>>>>", nationality);
-  console.log("limit >>>>>>>>>>>", limit);
+  // console.log("nationality >>>>>>>>>>>", nationality);
+  // console.log("limit >>>>>>>>>>>", limit);
   const response = await axios.get(
     `https://randomuser.me/api/?page=${page}&results=${limit}`
   );
@@ -34,12 +34,12 @@ export const getUser = createAsyncThunk("get/userData", async (data) => {
 export const filterUser = createAsyncThunk("get/filterData", async (data) => {
   const page = data.page;
   const nationality = data.filter;
-  console.log("page parameter >>>>>>>>>>>", page);
-  console.log("nationality >>>>>>>>>>>", nationality);
+  // console.log("page parameter >>>>>>>>>>>", page);
+  // console.log("nationality >>>>>>>>>>>", nationality);
   const response = await axios.get(
     `https://randomuser.me/api/?page=${page}&results=10&nat=${nationality}`
   );
-  console.log("response from filter reducer ==>>>>>>", response?.data?.results);
+  // console.log("response from filter reducer ==>>>>>>", response?.data?.results);
   return response.data.results;
 });
 
@@ -63,10 +63,10 @@ const userSlice = createSlice({
       state.cachedata = [];
     },
     searchUser: (state, action) => {
-      console.log(
-        "search user action payload ............>>>>>>>>>>>",
-        action.payload
-      );
+      // console.log(
+      //   "search user action payload ............>>>>>>>>>>>",
+      //   action.payload
+      // );
       if (action?.payload?.length > 0) {
         state.searchData = action.payload;
       } else {
@@ -81,8 +81,8 @@ const userSlice = createSlice({
     },
     [getUser.fulfilled]: (state, action) => {
       (state.loading = false),
-        console.log("action payload check ........>>>>", action);
-      state.user = [...state.user, ...action.payload];
+        // console.log("action payload check ........>>>>", action);
+        (state.user = [...state.user, ...action.payload]);
     },
     [getUser.rejected]: (state, action) => {
       state.loading = false;

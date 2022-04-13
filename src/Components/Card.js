@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Avatar, Row, Col, Typography } from "antd";
+import { Card, Typography } from "antd";
 const { Meta } = Card;
 const { Title } = Typography;
 import Modaal from "./Modaal";

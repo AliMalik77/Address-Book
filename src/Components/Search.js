@@ -3,7 +3,7 @@ import { Input, Space } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 
 import { searchUser } from "../Redux/reducers/userReducer";
-import { AudioOutlined } from "@ant-design/icons";
+// import { AudioOutlined } from "@ant-design/icons";
 const { Search } = Input;
 
 const Serch = () => {
@@ -12,7 +12,6 @@ const Serch = () => {
 
   const onSearch = (value) => {
     if (value) {
-      console.log("value is .........????", value);
       const search = user.filter((item) => {
         console.log(item.name.first);
         if (
@@ -21,22 +20,19 @@ const Serch = () => {
         ) {
           return item;
         }
-        // item.fistName.include(value) && item.lastName.include(value)
       });
-      console.log("Searching result is .........?>>>>>>", search);
       if (search) {
         dispatch(searchUser(search));
       }
     } else {
       dispatch(searchUser());
-      console.log("Type something to search..........");
     }
   };
   return (
     <>
       <div style={{ textAlign: "center", marginTop: "20px" }}>
         <Search
-          placeholder="input search text"
+          // placeholder="Search"
           allowClear
           enterButton="Search"
           size="large"
@@ -46,7 +42,6 @@ const Serch = () => {
             textAlign: "center",
           }}
         />
-        {/* <h1>Hello</h1> */}
       </div>
     </>
   );

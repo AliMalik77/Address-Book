@@ -1,6 +1,6 @@
 import React from "react";
-import RadioButton from "./RadioButton";
-import Navbar from "./Navbar";
+import RadioButton from "../Components/RadioButton";
+import Navbar from "../Components/Layout/Navbar";
 
 const Settings = () => {
   return (

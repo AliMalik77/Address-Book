@@ -12,8 +12,7 @@ const RadioButton = () => {
 
   const page = 1;
   const handleClick = (value) => {
-    console.log("value testing", value);
-    dispatch(setFilter("CH"));
+    dispatch(setFilter(value));
     dispatch(emptyUser());
   };
   return (

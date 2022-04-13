@@ -5,8 +5,7 @@ const { Title } = Typography;
 const Modaal = ({ data }) => {
   const { location, phone, cell } = data;
   const { city, street, state, postcode } = location;
-  const { number, name } = street;
-  // console.log("data fetched from props ................>>>>>>>>>>.", data);
+  const { name } = street;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
     setIsModalVisible(true);
@@ -21,24 +20,25 @@ const Modaal = ({ data }) => {
   };
 
   return (
-    <div>
+    <>
       <Button type="primary" onClick={showModal}>
         View Details
       </Button>
       <Modal
-        title="User Details"
+        title={data.name.title + " " + data.name.first + " " + data.name.last}
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={null}
       >
-        <Title level={5}>{name}</Title>
-        <Title level={5}>{city}</Title>
-        <Title level={5}>{state}</Title>
-        <Title level={5}>{postcode}</Title>
-        <Title level={5}>{phone}</Title>
-        <Title level={5}>{cell}</Title>
+        <Title level={5}>Street : {name}</Title>
+        <Title level={5}>City : {city}</Title>
+        <Title level={5}>State : {state}</Title>
+        <Title level={5}>Postcode : {postcode}</Title>
+        <Title level={5}>Phone : {phone}</Title>
+        <Title level={5}>Cell : {cell}</Title>
       </Modal>
-    </div>
+    </>
   );
 };
 

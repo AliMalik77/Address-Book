@@ -10,16 +10,9 @@ const Users = () => {
   const [page, setPage] = useState(0);
   const [loading, isloading] = useState(false);
   const [datafetched, setDataFetched] = useState(false);
-  // const [limit, setlimit] = useState(0);
   const { user, error, filter, searchData } = useSelector((state) => state.app);
-  console.log("searchData found from redux store ..........>>>>>>", searchData);
-  const dispatch = useDispatch();
 
-  // console.log("data fetched from redux store .....>>>>>", user, error);
-  // console.log("filter fetched from redux store ..........>>>>", filter);
-  // const search = user.filter(
-  //   (item) => item.fistName.includes(search) && item.lastName.includes(search)
-  // );
+  const dispatch = useDispatch();
 
   const options = {
     root: null,
@@ -54,13 +47,10 @@ const Users = () => {
       if (loading) {
         if (filter === null) {
           if (page == 1) {
-            // const cachePage = page + 1;
             dispatch(getUser({ page, filter, limit: 10 }));
             dispatch(cacheData({ page: page + 1, filter, limit: 10 }));
           }
           if (page > 1) {
-            // const cachePage = page + 1;
-            // dispatch(getUser({ page, filter, limit: 10 }));
             dispatch(cacheData({ page: page + 1, filter, limit: 10 }));
           }
         } else {
@@ -116,17 +106,19 @@ const Users = () => {
         </Row>
         <div>{}</div>
 
-        <div className="center" ref={setNode}>
-          <div className="wave"></div>
-          <div className="wave"></div>
-          <div className="wave"></div>
-          <div className="wave"></div>
-          <div className="wave"></div>
-          <div className="wave"></div>
-          <div className="wave"></div>
-          <div className="wave"></div>
-          <div className="wave"></div>
-          <div className="wave"></div>
+        <div style={{ height: "20vh", marginBottom: "150px" }}>
+          <div className="center" ref={setNode}>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+          </div>
         </div>
       </>
     );

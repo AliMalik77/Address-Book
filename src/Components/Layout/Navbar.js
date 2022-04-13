@@ -4,14 +4,11 @@ import { Layout, Menu } from "antd";
 import { UserOutlined, SettingOutlined } from "@ant-design/icons";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 const { Header } = Layout;
-import App from "./App";
-import Users from "./Users";
 
-import Settings from "./Settings";
-import "../style/styles.less";
+import "../../Assets/Styles/styles.less";
 const Navbar = () => {
   return (
-    <div>
+    <>
       <Layout className="layout">
         <Header>
           <div className="logo" />
@@ -25,7 +22,7 @@ const Navbar = () => {
           </Menu>
         </Header>
       </Layout>
-    </div>
+    </>
   );
 };
 
