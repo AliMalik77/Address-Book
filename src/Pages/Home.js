@@ -1,16 +1,16 @@
 import React from "react";
-import Navbar from "../Components/Layout/Navbar";
-import Search from "../Components/Search";
-import Users from "../Components/Users";
-import Layout from "../Components/Layout/layout.js";
+import Search from "../Components/search/Search";
+import Users from "../Components/users/Users";
+import Layout from "../Components/layout/Layoutwrap.js";
+import { useSelector, useDispatch } from "react-redux";
 const Home = () => {
+  const { user } = useSelector((state) => state.app);
+  console.log("data newbie", user);
   return (
-    <>
-      <Layout>
-        <Search />
-        <Users />
-      </Layout>
-    </>
+    <Layout>
+      <Search data={user} />
+      <Users />
+    </Layout>
   );
 };
 

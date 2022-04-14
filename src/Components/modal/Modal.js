@@ -3,9 +3,11 @@ import { Modal, Button } from "antd";
 import { Typography } from "antd";
 const { Title } = Typography;
 const Modaal = ({ data }) => {
-  const { location, phone, cell } = data;
-  const { city, street, state, postcode } = location;
-  const { name } = street;
+  // const { location, phone, cell } = data;
+  // const { city, street, state, postcode } = location;
+  // const { name } = street;
+
+  console.log("modal data ......>>>>>>>>>>", data);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
     setIsModalVisible(true);
@@ -31,12 +33,12 @@ const Modaal = ({ data }) => {
         onCancel={handleCancel}
         footer={null}
       >
-        <Title level={5}>Street : {name}</Title>
-        <Title level={5}>City : {city}</Title>
-        <Title level={5}>State : {state}</Title>
-        <Title level={5}>Postcode : {postcode}</Title>
-        <Title level={5}>Phone : {phone}</Title>
-        <Title level={5}>Cell : {cell}</Title>
+        <Title level={5}>Street : {data.street.name}</Title>
+        <Title level={5}>City : {data.city}</Title>
+        <Title level={5}>State : {data.state}</Title>
+        <Title level={5}>Postcode : {data.postcode}</Title>
+        <Title level={5}>Phone : {data.phone}</Title>
+        <Title level={5}>Cell : {data.cell}</Title>
       </Modal>
     </>
   );

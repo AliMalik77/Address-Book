@@ -2,12 +2,15 @@ import React from "react";
 import { Input, Space } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 
-import { searchUser } from "../Redux/reducers/userReducer";
-// import { AudioOutlined } from "@ant-design/icons";
+import { searchUser } from "../../Redux/reducers/userReducer";
+import "./search.styles.less";
 const { Search } = Input;
 
-const Serch = () => {
-  const { user, error, filter } = useSelector((state) => state.app);
+const Serch = (props) => {
+  // console.log("props data ......>>>>>>", props.data);
+  // const { user, error, filter } = useSelector((state) => state.app);
+
+  const user = props.data;
   const dispatch = useDispatch();
 
   const onSearch = (value) => {
@@ -30,7 +33,7 @@ const Serch = () => {
   };
   return (
     <>
-      <div style={{ textAlign: "center", marginTop: "20px" }}>
+      <div className="search-bar">
         <Search
           // placeholder="Search"
           allowClear

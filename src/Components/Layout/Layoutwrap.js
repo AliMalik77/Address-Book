@@ -1,11 +1,12 @@
 import React from "react";
 import Header from "./Navbar";
 import Footer from "./Footer";
+import "./layout.styles.less";
+
 const Layout = (props) => {
   return (
-    <div className="props.class">
+    <div>
       <Header />
-
       <main>{props.children}</main>
       <Footer />
     </div>

@@ -5,13 +5,13 @@ import { UserOutlined, SettingOutlined } from "@ant-design/icons";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 const { Header } = Layout;
 
-import "../../Assets/Styles/styles.less";
+import "../../styles/styles.less";
 const Navbar = () => {
   return (
     <>
       <Layout className="layout">
         <Header>
-          <div className="logo" />
+          {/* <div className="logo" /> */}
           <Menu theme="dark" mode="horizontal">
             <Menu.Item key="1" icon={<UserOutlined />}>
               <Link to="/">Users</Link>

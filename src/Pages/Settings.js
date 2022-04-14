@@ -1,13 +1,14 @@
 import React from "react";
-import RadioButton from "../Components/RadioButton";
-import Navbar from "../Components/Layout/Navbar";
+import RadioButton from "../Components/radioButton/RadioButton";
+import Layout from "../Components/layout/Layoutwrap.js";
+
+const nationalities = ["CH", "ES", "FR", "GB"];
 
 const Settings = () => {
   return (
-    <div>
-      <Navbar />
-      <RadioButton />
-    </div>
+    <Layout>
+      <RadioButton data={nationalities} />
+    </Layout>
   );
 };
 

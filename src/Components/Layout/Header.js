@@ -14,7 +14,7 @@ const Header = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", fontWeight: "bold" }}>
+    <div className="header">
       <h1>The Count is </h1>
       <button onClick={getUserData}>Increment</button>
     </div>

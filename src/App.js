@@ -1,17 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Settings from "./Pages/Settings";
-import Home from "./Pages/Home";
+import Settings from "./pages/Settings";
+import Home from "./pages/Home";
+import { store } from "../src/Redux/store";
+import { Provider } from "react-redux";
 
 //only routing performed in app.js
 const App = () => {
   return (
-    <>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
-    </>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
+      </Router>
+    </Provider>
   );
 };
 
