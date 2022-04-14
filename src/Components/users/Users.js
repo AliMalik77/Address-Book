@@ -120,15 +120,9 @@ const Users = () => {
       );
     }
   } else {
-    console.log("datafetched true");
     if (searchData?.length > 0) {
-      console.log("data searched ....");
       return (
         <>
-          {" "}
-          {/* <Title level={1} className="heading">
-          END OF LIST.....
-        </Title> */}
           <Row
             style={{
               padding: "100px",
@@ -144,7 +138,6 @@ const Users = () => {
         </>
       );
     } else {
-      console.log("data not searched ");
       return (
         <>
           <Row

@@ -21,7 +21,7 @@ const Cards = ({ data }) => {
     postcode,
   };
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div className="card">
       <Card
         style={{ width: 300 }}
         cover={<img alt="example" src={picture?.large} />}

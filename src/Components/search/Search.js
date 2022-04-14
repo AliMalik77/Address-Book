@@ -7,16 +7,12 @@ import "./search.styles.less";
 const { Search } = Input;
 
 const Serch = (props) => {
-  // console.log("props data ......>>>>>>", props.data);
-  // const { user, error, filter } = useSelector((state) => state.app);
-
   const user = props.data;
   const dispatch = useDispatch();
 
   const onSearch = (value) => {
     if (value) {
       const search = user.filter((item) => {
-        console.log(item.name.first);
         if (
           item.name.first.toUpperCase().includes(value.toUpperCase()) ||
           item.name.last.toUpperCase().includes(value.toUpperCase())
@@ -35,7 +31,6 @@ const Serch = (props) => {
     <>
       <div className="search-bar">
         <Search
-          // placeholder="Search"
           allowClear
           enterButton="Search"
           size="large"

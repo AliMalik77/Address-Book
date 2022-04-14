@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import { store } from "../src/Redux/store";
 import { Provider } from "react-redux";
 
-//only routing performed in app.js
 const App = () => {
   return (
     <Provider store={store}>

@@ -5,7 +5,6 @@ import Layout from "../Components/layout/Layoutwrap.js";
 import { useSelector, useDispatch } from "react-redux";
 const Home = () => {
   const { user } = useSelector((state) => state.app);
-  console.log("data newbie", user);
   return (
     <Layout>
       <Search data={user} />
