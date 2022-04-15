@@ -2,20 +2,23 @@ import React, { useState, useEffect, useRef } from "react";
 import Cards from "../card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Typography } from "antd";
+
 import {
   getUser,
   filterUser,
   cacheData,
-} from "../../Redux/reducers/userReducer";
+} from "../../Redux/actions/userActions";
 import "./users.styles.less";
+import { setPageNum } from "../../Redux/reducers/userReducer";
 const { Title } = Typography;
 
-const Users = () => {
-  const [users, setUsers] = useState([]);
+const Users = (props) => {
   const [page, setPage] = useState(0);
   const [loading, isloading] = useState(false);
   const [datafetched, setDataFetched] = useState(false);
-  const { user, error, filter, searchData } = useSelector((state) => state.app);
+
+  console.log("props data is .......>>>", props.data);
+  const { user, error, filter, searchData, pageNo } = props.data;
 
   const dispatch = useDispatch();
 
@@ -53,9 +56,17 @@ const Users = () => {
         if (filter === null) {
           if (page == 1) {
             dispatch(getUser({ page, filter, limit: 10 }));
+            // dispatch(setPageNum(page));
+            // console.log(pageNo);
+            // const a = setUsers(selector(user, pageNo));
+            // console.log("unsafe data  a", a);
+            // console.log("unsafe data b", users);
+            // console.log("page no is ......>>>>", pageNo);
             dispatch(cacheData({ page: page + 1, filter, limit: 10 }));
           }
           if (page > 1) {
+            // dispatch(setPageNum(page));
+            // console.log("page no is ......>>>>", pageNo);
             dispatch(cacheData({ page: page + 1, filter, limit: 10 }));
           }
         } else {
@@ -146,7 +157,7 @@ const Users = () => {
               marginBottom: "300px",
             }}
           >
-            {user.map((item, index) => (
+            {users.map((item, index) => (
               <Col lg={{ span: 6 }} xs={{ span: 24 }}>
                 <Cards data={user[index]} key={index} />
               </Col>

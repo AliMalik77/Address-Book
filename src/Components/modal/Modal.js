@@ -3,11 +3,6 @@ import { Modal, Button } from "antd";
 import { Typography } from "antd";
 const { Title } = Typography;
 const Modaal = ({ data }) => {
-  // const { location, phone, cell } = data;
-  // const { city, street, state, postcode } = location;
-  // const { name } = street;
-
-  console.log("modal data ......>>>>>>>>>>", data);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
     setIsModalVisible(true);
