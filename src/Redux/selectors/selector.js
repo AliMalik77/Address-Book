@@ -1,18 +1,16 @@
 import { createSelector } from "reselect";
-const selectSelf = (state) => state.user;
-const limitSelf = (state) => state.pageNo;
-console.log("hi");
-const Selector = createSelector([selectSelf, limitSelf], (state, limit) => {
-  console.log("state in selector", state);
-  console.log("limit in selector", limit);
-
-  if (limit == 1) {
-    console.log("length of array .......>>>>>>", state.user);
-    const length = state.length;
-
-    return state.slice(0, 5);
+export const selectSelf = (state) => state.user;
+export const limitSelf = (state) => state.pageNo;
+export const limitSelector = (state) => state.limit;
+const Selector = createSelector(
+  [selectSelf, limitSelf, limitSelector],
+  (state, page, limit) => {
+    if (page == 1) {
+      return state.slice(0, page * 10);
+    }
+    if (page > 1) {
+      return state.slice(0, page * 10);
+    }
   }
-  //   return state;
-});
-console.log("bye");
+);
 export default Selector;

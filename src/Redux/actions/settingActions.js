@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-export const getUser = createAsyncThunk("get/userData", async (data) => {
+export const filterUser = createAsyncThunk("get/filter", async (data) => {
   try {
     const page = data.page;
     const nationality = data.filter;
@@ -9,13 +8,17 @@ export const getUser = createAsyncThunk("get/userData", async (data) => {
 
     if (page == 1) {
       const response = await axios.get(
-        `https://randomuser.me/api/?page=${page}&results=${limit * 2}`
+        `https://randomuser.me/api/?page=${page}&results=${
+          limit * 2
+        }&nat=${nationality}`
       );
+
       return response.data.results;
     } else {
       const response = await axios.get(
-        `https://randomuser.me/api/?page=${page}&results=${limit}`
+        `https://randomuser.me/api/?page=${page}&results=${limit}&nat=${nationality}`
       );
+
       return response.data.results;
     }
   } catch (e) {

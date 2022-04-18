@@ -21,6 +21,7 @@ const RadioButton = (props) => {
           <Radio.Button
             value={index}
             onClick={() => handleClick(nationalities[index])}
+            key={index}
           >
             {nationalities[index]}
           </Radio.Button>

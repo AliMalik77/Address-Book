@@ -11,7 +11,6 @@ const Navbar = () => {
     <>
       <Layout className="layout">
         <Header>
-          {/* <div className="logo" /> */}
           <Menu theme="dark" mode="horizontal">
             <Menu.Item key="1" icon={<UserOutlined />}>
               <Link to="/">Users</Link>

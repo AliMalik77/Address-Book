@@ -2,14 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import Cards from "../card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Typography } from "antd";
+import { setPageNo, setLimit } from "../../Redux/reducers/userReducer";
 
-import {
-  getUser,
-  filterUser,
-  cacheData,
-} from "../../Redux/actions/userActions";
+import { getUser } from "../../Redux/actions/userActions";
+import { filterUser } from "../../Redux/actions/settingActions";
+
 import "./users.styles.less";
-import { setPageNum } from "../../Redux/reducers/userReducer";
+
 const { Title } = Typography;
 
 const Users = (props) => {
@@ -17,9 +16,7 @@ const Users = (props) => {
   const [loading, isloading] = useState(false);
   const [datafetched, setDataFetched] = useState(false);
 
-  console.log("props data is .......>>>", props.data);
   const { user, error, filter, searchData, pageNo } = props.data;
-
   const dispatch = useDispatch();
 
   const options = {
@@ -56,21 +53,25 @@ const Users = (props) => {
         if (filter === null) {
           if (page == 1) {
             dispatch(getUser({ page, filter, limit: 10 }));
-            // dispatch(setPageNum(page));
-            // console.log(pageNo);
-            // const a = setUsers(selector(user, pageNo));
-            // console.log("unsafe data  a", a);
-            // console.log("unsafe data b", users);
-            // console.log("page no is ......>>>>", pageNo);
-            dispatch(cacheData({ page: page + 1, filter, limit: 10 }));
+            dispatch(setPageNo(page));
+            dispatch(setLimit(pageNo * 10));
           }
           if (page > 1) {
-            // dispatch(setPageNum(page));
-            // console.log("page no is ......>>>>", pageNo);
-            dispatch(cacheData({ page: page + 1, filter, limit: 10 }));
+            dispatch(getUser({ page, filter, limit: 10 }));
+            dispatch(setPageNo(page));
+            dispatch(setLimit(pageNo * 10));
           }
         } else {
-          dispatch(filterUser({ page, filter }));
+          if (page == 1) {
+            dispatch(filterUser({ page, filter, limit: 10 }));
+            dispatch(setPageNo(page));
+            dispatch(setLimit(pageNo * 10));
+          }
+          if (page > 1) {
+            dispatch(filterUser({ page, filter, limit: 10 }));
+            dispatch(setPageNo(page));
+            dispatch(setLimit(pageNo * 10));
+          }
         }
       }
     } else {
@@ -91,7 +92,7 @@ const Users = (props) => {
             }}
           >
             {searchData.map((item, index) => (
-              <Col lg={{ span: 6 }} xs={{ span: 24 }}>
+              <Col lg={{ span: 6 }} xs={{ span: 24 }} key={index}>
                 <Cards data={searchData[index]} key={index} />
               </Col>
             ))}
@@ -141,7 +142,7 @@ const Users = (props) => {
             }}
           >
             {searchData.map((item, index) => (
-              <Col lg={{ span: 6 }} xs={{ span: 24 }}>
+              <Col lg={{ span: 6 }} xs={{ span: 24 }} key={index}>
                 <Cards data={searchData[index]} key={index} />
               </Col>
             ))}
@@ -157,8 +158,8 @@ const Users = (props) => {
               marginBottom: "300px",
             }}
           >
-            {users.map((item, index) => (
-              <Col lg={{ span: 6 }} xs={{ span: 24 }}>
+            {user.map((item, index) => (
+              <Col lg={{ span: 6 }} xs={{ span: 24 }} key={index}>
                 <Cards data={user[index]} key={index} />
               </Col>
             ))}

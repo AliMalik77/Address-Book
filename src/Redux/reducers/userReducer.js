@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser, cacheData, filterUser } from "../actions/userActions";
-import selector from "../selectors/selector";
-
+import { getUser } from "../actions/userActions";
+import { filterUser } from "../actions/settingActions";
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -9,6 +8,8 @@ const userSlice = createSlice({
     cachedata: [],
     searchData: [],
     loading: false,
+    pageNo: 1,
+    limit: 10,
     error: null,
     filter: null,
   },
@@ -19,6 +20,12 @@ const userSlice = createSlice({
     emptyUser: (state, action) => {
       state.user = [];
       state.cachedata = [];
+    },
+    setPageNo: (state, action) => {
+      state.pageNo = action.payload;
+    },
+    setLimit: (state, action) => {
+      state.limit = action.payload;
     },
     searchUser: (state, action) => {
       if (action?.payload?.length > 0) {
@@ -36,10 +43,6 @@ const userSlice = createSlice({
     builder.addCase(getUser.fulfilled, (state, action) => {
       (state.loading = false),
         (state.user = [...state.user, ...action.payload]);
-      console.log("user state data", state.user);
-      // console.log("action payload  data", action.payload);
-      // const unsafe = selector(action.payload);
-      // console.log("unsafe data ",unsafe);
     });
     builder.addCase(getUser.rejected, (state, action) => {
       state.loading = false;
@@ -56,25 +59,9 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
-    builder.addCase(cacheData.pending, (state, action) => {
-      state.loading = true;
-    });
-    builder.addCase(cacheData.fulfilled, (state, action) => {
-      state.loading = false;
-      const page = action.meta.arg.page;
-      if (page == 1) {
-        state.cachedata = [...action.payload];
-      } else {
-        state.user = [...state.user, ...state.cachedata];
-        state.cachedata = [...action.payload];
-      }
-    });
-    builder.addCase(cacheData.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
   },
 });
-export const { setFilter, emptyUser, searchUser } = userSlice.actions;
+export const { setFilter, emptyUser, searchUser, setPageNo, setLimit } =
+  userSlice.actions;
 
 export default userSlice.reducer;
