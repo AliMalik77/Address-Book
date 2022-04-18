@@ -1,9 +1,10 @@
 import { createSelector } from "reselect";
-export const selectSelf = (state) => state.user;
-export const limitSelf = (state) => state.pageNo;
-export const limitSelector = (state) => state.limit;
-const Selector = createSelector(
-  [selectSelf, limitSelf, limitSelector],
+export const userState = (state) => state.user;
+export const pageNoState = (state) => state.pageNo;
+export const limitState = (state) => state.limit;
+
+const userSelector = createSelector(
+  [userState, pageNoState, limitState],
   (state, page, limit) => {
     if (page == 1) {
       return state.slice(0, page * 10);
@@ -13,4 +14,4 @@ const Selector = createSelector(
     }
   }
 );
-export default Selector;
+export default userSelector;

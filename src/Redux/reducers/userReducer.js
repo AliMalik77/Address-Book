@@ -1,25 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getUser } from "../actions/userActions";
 import { filterUser } from "../actions/settingActions";
+import { initialState } from "../initialState";
+
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    user: [],
-    cachedata: [],
-    searchData: [],
-    loading: false,
-    pageNo: 1,
-    limit: 10,
-    error: null,
-    filter: null,
-  },
+  initialState,
   reducers: {
     setFilter: (state, action) => {
       state.filter = action.payload;
     },
     emptyUser: (state, action) => {
       state.user = [];
-      state.cachedata = [];
     },
     setPageNo: (state, action) => {
       state.pageNo = action.payload;

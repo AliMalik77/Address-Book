@@ -1,84 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import Cards from "../card/Card";
-import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Typography } from "antd";
-import { setPageNo, setLimit } from "../../Redux/reducers/userReducer";
-
-import { getUser } from "../../Redux/actions/userActions";
-import { filterUser } from "../../Redux/actions/settingActions";
-
+const { Title } = Typography;
+import Cards from "../card/Card";
 import "./users.styles.less";
 
-const { Title } = Typography;
-
-const Users = (props) => {
-  const [page, setPage] = useState(0);
-  const [loading, isloading] = useState(false);
-  const [datafetched, setDataFetched] = useState(false);
-
-  const { user, error, filter, searchData, pageNo } = props.data;
-  const dispatch = useDispatch();
-
-  const options = {
-    root: null,
-    rootMargin: "10px",
-  };
-
-  const [node, setNode] = useState(null);
-
-  const observer = useRef(
-    new window.IntersectionObserver(([entry]) => {
-      if (entry && entry.isIntersecting) incrementPage();
-    }, options)
-  );
-
-  const incrementPage = () => {
-    setPage((x) => x + 1);
-    isloading(false);
-  };
-
-  useEffect(() => {
-    const { current: currentObserver } = observer;
-    currentObserver.disconnect();
-
-    if (node) currentObserver.observe(node);
-
-    return () => currentObserver.disconnect();
-  }, [node]);
-
-  useEffect(() => {
-    if (page <= 5) {
-      isloading(true);
-      if (loading) {
-        if (filter === null) {
-          if (page == 1) {
-            dispatch(getUser({ page, filter, limit: 10 }));
-            dispatch(setPageNo(page));
-            dispatch(setLimit(pageNo * 10));
-          }
-          if (page > 1) {
-            dispatch(getUser({ page, filter, limit: 10 }));
-            dispatch(setPageNo(page));
-            dispatch(setLimit(pageNo * 10));
-          }
-        } else {
-          if (page == 1) {
-            dispatch(filterUser({ page, filter, limit: 10 }));
-            dispatch(setPageNo(page));
-            dispatch(setLimit(pageNo * 10));
-          }
-          if (page > 1) {
-            dispatch(filterUser({ page, filter, limit: 10 }));
-            dispatch(setPageNo(page));
-            dispatch(setLimit(pageNo * 10));
-          }
-        }
-      }
-    } else {
-      setDataFetched(true);
-      //set cache to null
-    }
-  }, [page]);
+const UsersComponent = (props) => {
+  const { datafetched, searchData, setNode, user, error, filter, node } =
+    props.data;
 
   if (!datafetched) {
     if (searchData?.length > 0) {
@@ -175,4 +103,4 @@ const Users = (props) => {
   }
 };
 
-export default Users;
+export default UsersComponent;
