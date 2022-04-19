@@ -1,6 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const filterUser = createAction("filterAction", function data(nat) {
+export const filterUser = createAction("filterAction", (nat) => {
   return {
     payload: {
       nat,

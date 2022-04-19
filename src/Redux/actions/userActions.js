@@ -3,14 +3,11 @@ import axios from "axios";
 
 export const getUser = createAsyncThunk(
   "get/userData",
-  async (data, { defaultLimit = 20 }) => {
+  async ({ page, limit = 20, nationality }) => {
     try {
-      const page = data.page;
-      const nationality = data.filter;
-      const limit = data.limit;
       if (page == 1) {
         const response = await axios.get(
-          `https://randomuser.me/api/?page=${page}&results=${defaultLimit}&nationality=${nationality}`
+          `https://randomuser.me/api/?page=${page}&results=${limit}&nationality=${nationality}`
         );
         return response.data.results;
       } else {
