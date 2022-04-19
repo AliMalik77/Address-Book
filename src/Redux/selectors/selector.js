@@ -1,12 +1,11 @@
 import { createSelector } from "reselect";
 export const userState = (state) => state.user;
 export const pageNoState = (state) => state.pageNo;
-export const limitState = (state) => state.limit;
 
 export const userSelector = createSelector(
-  [userState, pageNoState, limitState],
+  [userState, pageNoState],
   (state, page) => {
-    return state.slice(0, page * 10);
+    return state.slice(0, -10);
   }
 );
 

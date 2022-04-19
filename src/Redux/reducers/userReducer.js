@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getUser } from "../actions/userActions";
-import { filterUser } from "../actions/settingActions";
+// import { filterUser } from "../actions/settingActions";
 import { initialState } from "../initialState";
 
 const userSlice = createSlice({
@@ -9,13 +9,12 @@ const userSlice = createSlice({
   reducers: {
     emptyUser: (state, action) => {
       state.user = [];
+      state.pageNo = 1;
     },
     setPageNo: (state, action) => {
       state.pageNo = action.payload;
     },
-    setLimit: (state, action) => {
-      state.limit = action.payload;
-    },
+
     searchUser: (state, action) => {
       if (action?.payload?.length > 0) {
         state.searchData = action.payload;
@@ -38,9 +37,9 @@ const userSlice = createSlice({
       state.error = action.payload;
     });
 
-    builder.addCase(filterUser, (state, action) => {
-      state.filter = action.payload.nat;
-    });
+    // builder.addCase(filterUser, (state, action) => {
+    //   state.filter = action.payload.nat;
+    // });
   },
 });
 export const { setFilter, emptyUser, searchUser, setPageNo, setLimit } =

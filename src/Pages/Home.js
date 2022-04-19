@@ -8,17 +8,19 @@ import Usertest from "../Components/users/Users";
 import { getUser } from "../Redux/actions/userActions";
 import { setPageNo, setLimit } from "../Redux/reducers/userReducer";
 import { Row, Col, Typography } from "antd";
-
+// import { ErrorBoundary } from "react-error-boundary";
+// import { ErrorHandler } from "../Components/error/errorBoundary";
+// import ErrorBoundary from "../Components/error/errorBoundary";
 const Home = () => {
-  const { error, filter, searchData, pageNo } = useSelector(
-    (state) => state.app
-  );
+  const { error, searchData, pageNo } = useSelector((state) => state.app);
+  const { filter } = useSelector((state) => state.settings);
   const user = useSelector((state) => userSelector(state.app));
+
   const fetchMore = useSelector((state) => fetchMoreUsersSelector(state.app));
 
   const [page, setPage] = useState(0);
   const [loading, isloading] = useState(false);
-  const [dataFetched, setDataFetched] = useState(false);
+
   const dispatch = useDispatch();
   const [node, setNode] = useState(null);
 
@@ -51,12 +53,15 @@ const Home = () => {
     if (fetchMore) {
       isloading(true);
       if (loading) {
-        dispatch(getUser({ page, filter, limit: 10 }));
-        dispatch(setPageNo(page));
-        dispatch(setLimit(pageNo * 10));
+        if (pageNo == 1) {
+          dispatch(getUser({ pageNo, filter }));
+          dispatch(setPageNo(pageNo + 1));
+        }
+        if (pageNo > 1 && pageNo < 6) {
+          dispatch(getUser({ pageNo, filter, limit: 10 }));
+          dispatch(setPageNo(pageNo + 1));
+        }
       }
-    } else {
-      setDataFetched(true);
     }
   }, [page]);
 
@@ -67,12 +72,13 @@ const Home = () => {
     filter,
     searchData,
     pageNo,
-    dataFetched,
+    fetchMore,
   };
 
   return (
     <Layout>
       <Search data={user} />
+
       <Usertest data={data} />
     </Layout>
   );
