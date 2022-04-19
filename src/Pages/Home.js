@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Search from "../Components/search/Search";
 import Layout from "../Components/layout/Layoutwrap.js";
 import { useSelector, useDispatch } from "react-redux";
-import userSelector from "./../Redux/selectors/Selector.js";
+import { userSelector } from "../Redux/selectors/selector.js";
+import { fetchMoreUsersSelector } from "../Redux/selectors/selector.js";
 import Usertest from "../Components/users/Users";
 import { getUser } from "../Redux/actions/userActions";
-
 import { setPageNo, setLimit } from "../Redux/reducers/userReducer";
 import { Row, Col, Typography } from "antd";
 
@@ -14,9 +14,11 @@ const Home = () => {
     (state) => state.app
   );
   const user = useSelector((state) => userSelector(state.app));
+  const fetchMore = useSelector((state) => fetchMoreUsersSelector(state.app));
+
   const [page, setPage] = useState(0);
   const [loading, isloading] = useState(false);
-  const [datafetched, setDataFetched] = useState(false);
+  const [dataFetched, setDataFetched] = useState(false);
   const dispatch = useDispatch();
   const [node, setNode] = useState(null);
 
@@ -46,36 +48,15 @@ const Home = () => {
   }, [node]);
 
   useEffect(() => {
-    if (page <= 5) {
+    if (fetchMore) {
       isloading(true);
       if (loading) {
-        if (filter === null) {
-          if (page == 1) {
-            dispatch(getUser({ page, filter, limit: 10 }));
-            dispatch(setPageNo(page));
-            dispatch(setLimit(pageNo * 10));
-          }
-          if (page > 1) {
-            dispatch(getUser({ page, filter, limit: 10 }));
-            dispatch(setPageNo(page));
-            dispatch(setLimit(pageNo * 10));
-          }
-        } else {
-          if (page == 1) {
-            dispatch(filterUser({ page, filter, limit: 10 }));
-            dispatch(setPageNo(page));
-            dispatch(setLimit(pageNo * 10));
-          }
-          if (page > 1) {
-            dispatch(filterUser({ page, filter, limit: 10 }));
-            dispatch(setPageNo(page));
-            dispatch(setLimit(pageNo * 10));
-          }
-        }
+        dispatch(getUser({ page, filter, limit: 10 }));
+        dispatch(setPageNo(page));
+        dispatch(setLimit(pageNo * 10));
       }
     } else {
       setDataFetched(true);
-      //set cache to null
     }
   }, [page]);
 
@@ -86,7 +67,7 @@ const Home = () => {
     filter,
     searchData,
     pageNo,
-    datafetched,
+    dataFetched,
   };
 
   return (

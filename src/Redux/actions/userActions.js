@@ -8,15 +8,14 @@ export const getUser = createAsyncThunk(
       const page = data.page;
       const nationality = data.filter;
       const limit = data.limit;
-
       if (page == 1) {
         const response = await axios.get(
-          `https://randomuser.me/api/?page=${page}&results=${defaultLimit}`
+          `https://randomuser.me/api/?page=${page}&results=${defaultLimit}&nationality=${nationality}`
         );
         return response.data.results;
       } else {
         const response = await axios.get(
-          `https://randomuser.me/api/?page=${page}&results=${limit}`
+          `https://randomuser.me/api/?page=${page}&results=${limit}&nationality=${nationality}`
         );
         return response.data.results;
       }

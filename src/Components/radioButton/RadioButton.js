@@ -3,6 +3,7 @@ import { Radio } from "antd";
 import { Typography } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { setFilter, emptyUser } from "../../Redux/reducers/userReducer";
+import { filterUser } from "../../Redux/actions/settingActions";
 const { Title } = Typography;
 import "./radio.styles.less";
 const RadioButton = (props) => {
@@ -11,7 +12,7 @@ const RadioButton = (props) => {
   const nationalities = props.data;
   const page = 1;
   const handleClick = (value) => {
-    dispatch(setFilter(value));
+    dispatch(filterUser(value));
     dispatch(emptyUser());
   };
   return (

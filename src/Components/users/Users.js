@@ -5,10 +5,10 @@ import Cards from "../card/Card";
 import "./users.styles.less";
 
 const UsersComponent = (props) => {
-  const { datafetched, searchData, setNode, user, error, filter, node } =
+  const { dataFetched, searchData, setNode, user, error, filter, node } =
     props.data;
 
-  if (!datafetched) {
+  if (!dataFetched) {
     if (searchData?.length > 0) {
       return (
         <>

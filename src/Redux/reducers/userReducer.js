@@ -7,9 +7,6 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setFilter: (state, action) => {
-      state.filter = action.payload;
-    },
     emptyUser: (state, action) => {
       state.user = [];
     },
@@ -40,16 +37,9 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
-    builder.addCase(filterUser.pending, (state, action) => {
-      state.loading = true;
-    });
-    builder.addCase(filterUser.fulfilled, (state, action) => {
-      state.loading = false;
-      state.user = [...state.user, ...action.payload];
-    });
-    builder.addCase(filterUser.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
+
+    builder.addCase(filterUser, (state, action) => {
+      state.filter = action.payload.nat;
     });
   },
 });
