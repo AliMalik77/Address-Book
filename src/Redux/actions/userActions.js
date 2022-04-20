@@ -3,16 +3,14 @@ import axios from "axios";
 
 export const getUser = createAsyncThunk(
   "get/userData",
-  async ({ pageNo, limit = 20, filter }) => {
+  async ({ pageNo, limit = 100, nationality }) => {
     try {
-      // console.log(pageNo, limit, filter);
       const response = await axios.get(
-        `https://randomuser.me/api/?page=${pageNo}&results=${limit}&nationality=${filter}`
+        `https://randomuser.me/api/?page=${pageNo}&results=${limit}&nationality=${nationality}`
       );
       return response.data.results;
     } catch (e) {
       throw new Error("I crashed!");
-      return e;
     }
   }
 );

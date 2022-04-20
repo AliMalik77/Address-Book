@@ -4,11 +4,11 @@ import { filterUser } from "../actions/settingActions";
 const settingSlice = createSlice({
   name: "settings",
   initialState: {
-    filter: null,
+    nationality: null,
   },
   extraReducers: (builder) => {
     builder.addCase(filterUser, (state, action) => {
-      state.filter = action.payload.nat;
+      state.nationality = action.payload.nat;
     });
   },
 });

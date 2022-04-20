@@ -36,10 +36,6 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
-
-    // builder.addCase(filterUser, (state, action) => {
-    //   state.filter = action.payload.nat;
-    // });
   },
 });
 export const { setFilter, emptyUser, searchUser, setPageNo, setLimit } =

@@ -5,7 +5,7 @@ import Cards from "../card/Card";
 import "./users.styles.less";
 
 const UsersComponent = (props) => {
-  const { searchData, setNode, user, error, filter, node, fetchMore } =
+  const { searchData, setNode, user, error, nationality, node, fetchMore } =
     props.data;
 
   if (fetchMore) {
