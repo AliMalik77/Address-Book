@@ -61,7 +61,7 @@ const Home = () => {
         }
       }
     }
-  }, [page]);
+  }, [page, setNode]);
 
   const data = {
     user,

@@ -9,7 +9,6 @@ const UsersComponent = (props) => {
     props.data;
 
   if (fetchMore) {
-    console.log(user);
     if (searchData?.length > 0) {
       return (
         <>
