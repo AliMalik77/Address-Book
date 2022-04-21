@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Search from "../Components/home/search/Search";
-import Layout from "../Components/home/layout/Layoutwrap";
+import Layout from "../Components/common/error/layout/Layoutwrap";
 import { useSelector, useDispatch } from "react-redux";
 import { userSelector } from "../Redux/selectors/selector.js";
 import { fetchMoreUsersSelector } from "../Redux/selectors/selector.js";
