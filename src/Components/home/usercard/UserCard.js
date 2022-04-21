@@ -3,7 +3,7 @@ import { Card, Typography } from "antd";
 const { Meta } = Card;
 const { Title } = Typography;
 import UserDetails from "../modal/Modal";
-const Cards = ({ data }) => {
+const UserCard = ({ data }) => {
   const { picture, name, login, email } = data;
   const { first, last } = name;
   const { username, password } = login;
@@ -36,4 +36,4 @@ const Cards = ({ data }) => {
   );
 };
 
-export default Cards;
+export default UserCard;

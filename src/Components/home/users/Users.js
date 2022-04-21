@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Row, Col, Typography } from "antd";
 const { Title } = Typography;
-import UserCard from "../card/Card";
+import UserCard from "../usercard/UserCard";
 import "./users.styles.less";
-import PageLoader from "../loader/PageLoader";
+import PageLoader from "../../common/loader/PageLoader";
 const UsersComponent = (props) => {
   const { setNode, users, fetchMore, searchData } = props.data;
 
