@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Typography } from "antd";
 const { Meta } = Card;
 const { Title } = Typography;
-import Modaal from "../modal/Modal";
+import UserDetails from "../modal/Modal";
 const Cards = ({ data }) => {
   const { picture, name, login, email } = data;
   const { first, last } = name;
@@ -23,14 +23,14 @@ const Cards = ({ data }) => {
   return (
     <div className="card">
       <Card
-        style={{ width: 300 }}
+        className="card-picture"
         cover={<img alt="example" src={picture?.large} />}
       >
         <Title level={5}>{first}</Title>
         <Title level={5}>{last}</Title>
         <Title level={5}>{username}</Title>
         <Title level={5}>{email}</Title>
-        <Modaal data={new_data} />
+        <UserDetails data={new_data} />
       </Card>
     </div>
   );

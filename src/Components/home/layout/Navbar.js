@@ -3,9 +3,8 @@ import "antd/dist/antd.css";
 import { Layout, Menu } from "antd";
 import { UserOutlined, SettingOutlined } from "@ant-design/icons";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-const { Header } = Layout;
 
-import "../../styles/styles.less";
+const { Header } = Layout;
 const Navbar = () => {
   return (
     <>

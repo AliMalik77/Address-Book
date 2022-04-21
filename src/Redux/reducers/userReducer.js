@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getUser } from "../actions/userActions";
-// import { filterUser } from "../actions/settingActions";
 import { initialState } from "../initialState";
 
 const userSlice = createSlice({

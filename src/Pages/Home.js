@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import Search from "../Components/search/Search";
-import Layout from "../Components/layout/Layoutwrap.js";
+import Search from "../Components/home/search/Search";
+import Layout from "../Components/home/layout/Layoutwrap";
 import { useSelector, useDispatch } from "react-redux";
 import { userSelector } from "../Redux/selectors/selector.js";
 import { fetchMoreUsersSelector } from "../Redux/selectors/selector.js";
-import UserComponent from "../Components/users/Users";
+import UserComponent from "../Components/home/users/Users";
 import { getUser } from "../Redux/actions/userActions";
-import { setPageNo, setLimit } from "../Redux/reducers/userReducer";
-import { Row, Col, Typography } from "antd";
+import { setPageNo } from "../Redux/reducers/userReducer";
 
 const options = {
   root: null,
@@ -17,7 +16,7 @@ const options = {
 const Home = () => {
   const { error, searchData, pageNo } = useSelector((state) => state.app);
   const { nationality } = useSelector((state) => state.settings);
-  const user = useSelector((state) => userSelector(state.app));
+  const users = useSelector((state) => userSelector(state.app));
 
   const fetchMore = useSelector((state) => fetchMoreUsersSelector(state.app));
 
@@ -64,7 +63,7 @@ const Home = () => {
   }, [page, setNode]);
 
   const data = {
-    user,
+    users,
     error,
     setNode,
     nationality,
@@ -75,7 +74,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <Search data={user} />
+      <Search />
       <UserComponent data={data} />
     </Layout>
   );

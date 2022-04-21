@@ -1,13 +1,13 @@
 import React from "react";
-import RadioButton from "../Components/radioButton/RadioButton";
-import Layout from "../Components/layout/Layoutwrap.js";
+import NationalityFilter from "../Components/settings/nationalityfilter/NationalityFilter";
+import Layout from "../Components/home/layout/Layoutwrap";
 
 const nationalities = ["CH", "ES", "FR", "GB"];
 
 const Settings = () => {
   return (
     <Layout>
-      <RadioButton data={nationalities} />
+      <NationalityFilter data={nationalities} />
     </Layout>
   );
 };

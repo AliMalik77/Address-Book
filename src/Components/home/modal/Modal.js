@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "antd";
 import { Typography } from "antd";
 const { Title } = Typography;
-const Modaal = ({ data }) => {
+const UserDetails = ({ data }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
     setIsModalVisible(true);
@@ -39,4 +39,4 @@ const Modaal = ({ data }) => {
   );
 };
 
-export default Modaal;
+export default UserDetails;

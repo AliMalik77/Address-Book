@@ -1,11 +1,24 @@
 import { createSelector } from "reselect";
 export const userState = (state) => state.user;
 export const pageNoState = (state) => state.pageNo;
+export const searchState = (state) => state.searchData;
 
 export const userSelector = createSelector(
-  [userState, pageNoState],
-  (state, page) => {
-    return state.slice(0, -50);
+  [userState, pageNoState, searchState],
+  (user, page, search) => {
+    if (search.length > 0) {
+      const data = user.filter((item) => {
+        if (
+          item.name.first.toUpperCase().includes(search.toUpperCase()) ||
+          item.name.last.toUpperCase().includes(search.toUpperCase())
+        ) {
+          return item;
+        }
+      });
+      return data;
+    } else {
+      return user.slice(0, -50);
+    }
   }
 );
 
