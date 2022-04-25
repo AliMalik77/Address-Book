@@ -7,7 +7,6 @@ import "./filter.styles.less";
 
 const NationalityFilter = (props) => {
   let [defaultNat] = props.data;
-  console.log("first is .......>>>>>>", defaultNat);
 
   const dispatch = useDispatch();
   const nationalities = props.data;
