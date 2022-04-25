@@ -2,7 +2,7 @@ import React from "react";
 import { Input } from "antd";
 import { useDispatch } from "react-redux";
 
-import { searchUser } from "../../../reduxx/reducers/userReducer";
+import { searchUser } from "../../../redux/reducers/userReducer";
 import "./search.styles.less";
 const { Search } = Input;
 

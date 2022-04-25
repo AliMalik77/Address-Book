@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Search from "../Components/home/search/Search";
 import Layout from "../Components/common/layout/Layoutwrap";
 import { useSelector, useDispatch } from "react-redux";
-import { userSelector } from "../reduxx/selectors/selector.js";
-import { fetchMoreUsersSelector } from "../reduxx/selectors/selector.js";
+import { userSelector } from "../redux/selectors/selector.js";
+import { fetchMoreUsersSelector } from "../redux/selectors/selector.js";
 import UserComponent from "../Components/home/users/Users";
-import { getUser } from "../reduxx/actions/userActions";
-import { setPageNo } from "../reduxx/reducers/userReducer";
+import { getUser } from "../redux/actions/userActions";
+import { setPageNo } from "../redux/reducers/userReducer";
 
 const options = {
   root: null,

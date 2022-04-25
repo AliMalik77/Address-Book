@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Settings from "./page/Settings";
-import Home from "./page/Home";
-import { store } from "../src/reduxx/store";
+import Settings from "./pages/Settings";
+import Home from "./pages/Home";
+import { store } from "../src/redux/store";
 import { Provider } from "react-redux";
 import ErrorBoundary from "./Components/common/error/ErrorBoundary";
 const App = () => {
