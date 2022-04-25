@@ -6,6 +6,9 @@ import { filterUser } from "../../../Redux/actions/settingActions";
 import "./filter.styles.less";
 
 const NationalityFilter = (props) => {
+  let [defaultNat] = props.data;
+  console.log("first is .......>>>>>>", defaultNat);
+
   const dispatch = useDispatch();
   const nationalities = props.data;
   const handleClick = (value) => {
@@ -14,7 +17,7 @@ const NationalityFilter = (props) => {
   };
   return (
     <div className="radio-btn">
-      <Radio.Group defaultValue={nationalities[0]} buttonStyle="solid">
+      <Radio.Group defaultValue={defaultNat} buttonStyle="solid">
         {nationalities.map((item, index) => (
           <Radio.Button
             value={index}

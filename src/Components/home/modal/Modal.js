@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Modal, Button } from "antd";
-import { Typography } from "antd";
+import { Modal, Button, Typography } from "antd";
+
 const { Title } = Typography;
 const UserDetails = ({ data }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);

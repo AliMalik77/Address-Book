@@ -1,6 +1,6 @@
 import React from "react";
-import { Input, Space } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import { Input } from "antd";
+import { useDispatch } from "react-redux";
 
 import { searchUser } from "../../../Redux/reducers/userReducer";
 import "./search.styles.less";

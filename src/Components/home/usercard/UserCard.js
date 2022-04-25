@@ -3,6 +3,7 @@ import { Card, Typography } from "antd";
 const { Meta } = Card;
 const { Title } = Typography;
 import UserDetails from "../modal/Modal";
+import "./card.styles.less";
 const UserCard = ({ data }) => {
   const { picture, name, login, email } = data;
   const { first, last } = name;
