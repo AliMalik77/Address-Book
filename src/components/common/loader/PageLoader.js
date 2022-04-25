@@ -1,22 +1,23 @@
+import { Col } from "antd";
 import React from "react";
 import "./loader.styles.less";
 const PageLoader = (props) => {
   const setNode = props.data;
   return (
-    <div className="page-loader">
-      <div className="center" ref={setNode}>
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
-        <div className="wave"></div>
-      </div>
-    </div>
+    <Col className="page-loader">
+      <Col className="center" ref={setNode}>
+        <Col className="wave"></Col>
+        <Col className="wave"></Col>
+        <Col className="wave"></Col>
+        <Col className="wave"></Col>
+        <Col className="wave"></Col>
+        <Col className="wave"></Col>
+        <Col className="wave"></Col>
+        <Col className="wave"></Col>
+        <Col className="wave"></Col>
+        <Col className="wave"></Col>
+      </Col>
+    </Col>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, Typography } from "antd";
+import { Card, Typography, Row, Col } from "antd";
+
 const { Meta } = Card;
 const { Title } = Typography;
 import UserDetails from "../modal/Modal";
@@ -22,18 +23,20 @@ const UserCard = ({ data }) => {
     postcode,
   };
   return (
-    <div className="card">
-      <Card
-        className="card-picture"
-        cover={<img alt="example" src={picture?.large} />}
-      >
-        <Title level={5}>{first}</Title>
-        <Title level={5}>{last}</Title>
-        <Title level={5}>{username}</Title>
-        <Title level={5}>{email}</Title>
-        <UserDetails data={new_data} />
-      </Card>
-    </div>
+    <Row className="card">
+      <Col>
+        <Card
+          className="card-picture"
+          cover={<img alt="example" src={picture?.large} />}
+        >
+          <Title level={5}>{first}</Title>
+          <Title level={5}>{last}</Title>
+          <Title level={5}>{username}</Title>
+          <Title level={5}>{email}</Title>
+          <UserDetails data={new_data} />
+        </Card>
+      </Col>
+    </Row>
   );
 };
 

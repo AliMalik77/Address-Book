@@ -1,5 +1,5 @@
 import React from "react";
-import { Radio } from "antd";
+import { Radio, Row, Col } from "antd";
 import { useDispatch } from "react-redux";
 import { emptyUser } from "../../../redux/reducers/userReducer";
 import { filterUser } from "../../../redux/actions/settingActions";
@@ -15,19 +15,27 @@ const NationalityFilter = (props) => {
     dispatch(emptyUser());
   };
   return (
-    <div className="radio-btn">
-      <Radio.Group defaultValue={defaultNat} buttonStyle="solid">
-        {nationalities.map((item, index) => (
-          <Radio.Button
-            value={index}
-            onClick={() => handleClick(nationalities[index])}
-            key={index}
-          >
-            {nationalities[index]}
-          </Radio.Button>
-        ))}
-      </Radio.Group>
-    </div>
+    <Row className="radio-btn">
+      <Col
+        xl={{ span: 24, offset: 10 }}
+        lg={{ span: 24, offset: 10 }}
+        md={{ span: 24, offset: 10 }}
+        sm={{ span: 24, offset: 10 }}
+        xs={{ span: 24, offset: 6 }}
+      >
+        <Radio.Group defaultValue={defaultNat} buttonStyle="solid">
+          {nationalities.map((item, index) => (
+            <Radio.Button
+              value={index}
+              onClick={() => handleClick(nationalities[index])}
+              key={index}
+            >
+              {nationalities[index]}
+            </Radio.Button>
+          ))}
+        </Radio.Group>
+      </Col>
+    </Row>
   );
 };
 

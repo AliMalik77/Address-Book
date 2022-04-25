@@ -44,11 +44,12 @@ const UsersComponent = (props) => {
             </Col>
           ))}
         </Row>
-        <div className="end-list">
+
+        <>
           <Title level={1} className="heading">
             End of list
           </Title>
-        </div>
+        </>
       </>
     );
   }

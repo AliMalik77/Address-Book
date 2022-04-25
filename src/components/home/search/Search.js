@@ -1,5 +1,5 @@
 import React from "react";
-import { Input } from "antd";
+import { Input, Row, Col } from "antd";
 import { useDispatch } from "react-redux";
 
 import { searchUser } from "../../../redux/reducers/userReducer";
@@ -18,15 +18,23 @@ const Serch = () => {
   };
   return (
     <>
-      <div className="search">
-        <Search
-          className="search-bar"
-          allowClear
-          enterButton="Search"
-          size="large"
-          onSearch={onSearch}
-        />
-      </div>
+      <Row className="search">
+        <Col
+          xl={{ span: 24, offset: 9 }}
+          lg={{ span: 24, offset: 8 }}
+          md={{ span: 24, offset: 6 }}
+          sm={{ span: 24, offset: 6 }}
+          xs={{ span: 24, offset: 2 }}
+        >
+          <Search
+            className="search-bar"
+            allowClear
+            enterButton="Search"
+            size="large"
+            onSearch={onSearch}
+          />
+        </Col>
+      </Row>
     </>
   );
 };
