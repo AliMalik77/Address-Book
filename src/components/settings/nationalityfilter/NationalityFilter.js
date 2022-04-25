@@ -1,8 +1,8 @@
 import React from "react";
 import { Radio } from "antd";
 import { useDispatch } from "react-redux";
-import { emptyUser } from "../../../Redux/reducers/userReducer";
-import { filterUser } from "../../../Redux/actions/settingActions";
+import { emptyUser } from "../../../reduxx/reducers/userReducer";
+import { filterUser } from "../../../reduxx/actions/settingActions";
 import "./filter.styles.less";
 
 const NationalityFilter = (props) => {
